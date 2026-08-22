@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+
+  --color-fog-50: #f2f7f6;
+  --color-fog-100: #e2ecea;
+  --color-fog-200: #c3d4d1;
+  --color-fog-300: #a2b8b4;
+  --color-fog-400: #829b97;
+  --color-fog-500: #647f7b;
+  --color-fog-600: #4c6360;
+  --color-fog-700: #394c49;
+  --color-fog-800: #243231;
+  --color-fog-900: #16211f;
+  --color-fog-950: #0b1514;
+
+  --color-ember-200: #ffe4b3;
+  --color-ember-300: #ffd489;
+  --color-ember-400: #ffc15e;
+  --color-ember-500: #f5a83c;
+  --color-ember-600: #d98a1f;
+  --color-ember-700: #a86514;
+
+  --color-jade-200: #b5f2e7;
+  --color-jade-300: #7fe8d8;
+  --color-jade-400: #4adcc6;
+  --color-jade-500: #2fc4ae;
+  --color-jade-600: #1fa390;
+  --color-jade-700: #17796c;
+
+  --color-coral-300: #ffa598;
+  --color-coral-400: #ff8177;
+  --color-coral-500: #ff6e5e;
+  --color-coral-600: #e04f40;
+
+  --color-skyx-300: #a9cbff;
+  --color-skyx-400: #7fb4ff;
+  --color-skyx-500: #5a96ec;
+
+  --color-lime-300: #d3ef9a;
+  --color-lime-400: #b8e36b;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+
+::selection {
+  background: rgba(245, 168, 60, 0.35);
+  color: #fff7e8;
+}
+
+/* ---------- 玻璃面板 ---------- */
+.glass {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.035));
+  backdrop-filter: blur(22px) saturate(1.25);
+  -webkit-backdrop-filter: blur(22px) saturate(1.25);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 24px 60px -24px rgba(2, 10, 9, 0.7);
+}
+
+.glass-deep {
+  background: linear-gradient(170deg, rgba(11, 24, 22, 0.72), rgba(11, 24, 22, 0.55));
+  backdrop-filter: blur(26px) saturate(1.3);
+  -webkit-backdrop-filter: blur(26px) saturate(1.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 30px 80px -30px rgba(0, 0, 0, 0.8);
+}
+
+.glass-chip {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.hairline-b {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- 滚动条 ---------- */
+.scroll-slim {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+}
+.scroll-slim::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.scroll-slim::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 99px;
+}
+.scroll-slim::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 168, 60, 0.5);
+}
+.scroll-slim::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- 动画 ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slide-l {
+  from {
+    opacity: 0;
+    transform: translateX(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(74, 220, 198, 0.55);
+  }
+  50% {
+    opacity: 0.75;
+    box-shadow: 0 0 0 6px rgba(74, 220, 198, 0);
+  }
+}
+@keyframes ember-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 168, 60, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(245, 168, 60, 0);
+  }
+}
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -26px, 0);
+  }
+}
+@keyframes scan {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+.anim-rise {
+  animation: rise 0.55s cubic-bezier(0.22, 0.9, 0.3, 1) both;
+}
+.anim-slide-l {
+  animation: slide-l 0.45s cubic-bezier(0.22, 0.9, 0.3, 1) both;
+}
+.anim-pop {
+  animation: pop-in 0.32s cubic-bezier(0.22, 0.9, 0.3, 1) both;
+}
+.dot-live {
+  animation: glow-pulse 2.2s ease-in-out infinite;
+}
+.dot-ember {
+  animation: ember-pulse 2s ease-in-out infinite;
+}
+
+.sheen {
+  background-image: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.14) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  background-size: 200% 100%;
+  animation: scan 2.6s linear infinite;
+}
+
+.grabbing * {
+  cursor: grabbing !important;
+}
+
+input,
+textarea {
+  outline: none;
+}
